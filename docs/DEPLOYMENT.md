@@ -1,7 +1,11 @@
-# Deploying to Cloudflare Pages
+# Deploying to Cloudflare
 
-The site is a static Vite build (`pnpm build` → `dist/`). Deploys are driven by GitHub Actions:
-merging a pull request into `main` runs typecheck, tests and build, then publishes `dist/`.
+The site is a static Vite build (`pnpm build` → `dist/`). It is served by Cloudflare Workers static
+assets, configured in `wrangler.jsonc` (worker name `alexandra-michael`). Merging a pull request into
+`main` runs typecheck, tests and build, then `wrangler deploy` publishes `dist/`. The first deploy
+creates the worker automatically, so nothing needs to be created by hand in the dashboard.
+
+Live URL: `https://alexandra-michael.<account-subdomain>.workers.dev`
 
 ## Branching
 
@@ -10,55 +14,28 @@ merging a pull request into `main` runs typecheck, tests and build, then publish
 | `main` | Production. Only changes via PR from `dev`. Merging deploys. |
 | `dev`  | Day-to-day work. Every push and PR runs CI (no deploy). |
 
-Flow: work on `dev` (or a feature branch off it) → PR into `dev` → PR `dev` into `main` → merge → live.
-
 ## One-time setup
 
-### 1. Push the repo
-```bash
-git remote add origin git@github.com:<owner>/<repo>.git
-git push -u origin main dev
-```
+1. **Push the repo** to GitHub (`main` and `dev`).
+2. **Create an API token**: Cloudflare dashboard → My Profile → API Tokens → Create Token →
+   use the **Edit Cloudflare Workers** template. Copy it (shown once).
+3. **Copy your Account ID** from the Workers & Pages overview sidebar.
+4. **Add GitHub secrets** (Settings → Secrets and variables → Actions → Secrets):
+   `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`. No variables are needed.
+5. **Protect `main`** (Settings → Branches): require a PR and the `verify` check.
 
-### 2. Create the Cloudflare Pages project
-1. Sign in at https://dash.cloudflare.com (free account is fine).
-2. **Workers & Pages → Create → Pages → Upload assets** (not "Connect to Git"; GitHub Actions does the deploys).
-3. Name the project, e.g. `alexandra-michael`. Upload any file to finish creating it; the first real deploy replaces it.
-4. Your site will be at `https://<project-name>.pages.dev`.
-
-### 3. Create an API token
-1. Cloudflare dashboard → **My Profile → API Tokens → Create Token → Create Custom Token**.
-2. Permission: **Account → Cloudflare Pages → Edit**. Scope it to your account.
-3. Copy the token (shown once).
-4. Copy your **Account ID** from the right sidebar of **Workers & Pages**.
-
-### 4. Add GitHub secrets and variable
-Repo → **Settings → Secrets and variables → Actions**:
-
-- Secrets: `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`
-- Variables: `CF_PAGES_PROJECT` = the project name from step 2
-
-### 5. Protect `main` (recommended)
-Repo → **Settings → Branches → Add rule** for `main`:
-- Require a pull request before merging
-- Require status check **verify** (from the CI workflow) to pass
+If a worker named `alexandra-michael` already exists in the account (for example the Hello World one
+created from the dashboard), the first deploy replaces its code. To use another name, change `name` in `wrangler.jsonc`.
 
 ## Day-to-day
-```bash
-git switch dev
-pnpm install
-pnpm dev            # local preview
-pnpm test           # unit tests
-git push origin dev # CI runs
-```
-When ready, open a PR `dev → main`. CI must pass. Merge it and the **Deploy to Cloudflare Pages** workflow publishes the site (watch it under the **Actions** tab).
-
-Closing a PR **without** merging does not deploy.
+Work on `dev`, push (CI runs), open a PR `dev → main`, merge. The **Deploy to Cloudflare** workflow
+publishes the site. Closing a PR without merging does not deploy.
 
 ## Custom domain
-Cloudflare → your Pages project → **Custom domains → Set up a domain**. Follow the DNS prompts. Once live, update the `og:image` in `index.html` to an absolute URL (`https://yourdomain/images/portrait-studio.jpg`).
+Workers & Pages → the worker → Settings → Domains & Routes → Add → Custom domain.
+The `*.workers.dev` subdomain is per account and cannot be renamed per project.
+After changing the domain, update `VITE_SITE_URL` in `.env` so link previews use it.
 
 ## Troubleshooting
-- **Deploy fails with "Project not found"**: `CF_PAGES_PROJECT` doesn't match the project name exactly.
-- **Authentication error**: token missing *Cloudflare Pages: Edit*, or wrong Account ID.
+- **Authentication error / code 10000**: token lacks Workers edit permission, or the Account ID is wrong.
 - **`--frozen-lockfile` error**: run `pnpm install` locally and commit `pnpm-lock.yaml`.

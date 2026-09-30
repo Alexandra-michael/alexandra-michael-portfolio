@@ -1,6 +1,6 @@
 # Alexandra Michael — Portfolio
 
-Personal portfolio for Alexandra Michael, Software QA Engineer. Static site built with Vite and TypeScript, deployed on Cloudflare Pages.
+Personal portfolio for Alexandra Michael, Software QA Engineer. Static site built with Vite and TypeScript, deployed on Cloudflare (Workers static assets).
 
 ## Stack
 
@@ -41,7 +41,7 @@ To change the copy on the site, edit `src/data/content.ts`.
 ## Branching and deployment
 
 - `dev`: day-to-day work. CI runs typecheck, tests and build on every push and PR.
-- `main`: production. Merging a PR into `main` runs the checks and deploys to Cloudflare Pages.
+- `main`: production. Merging a PR into `main` runs the checks and deploys to Cloudflare.
 
 Commits follow [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `docs:`, `ci:`, `chore:`).
 
