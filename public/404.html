@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<title>Page not found — Alexandra Michael</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+<style>
+  :root { --paper:#f2ebdd; --ink:#1b1612; --bug:#e0451f; --soft:#5b5045; }
+  * { box-sizing: border-box; }
+  body { margin:0; min-height:100vh; display:grid; place-items:center; padding:1.5rem; background:var(--paper); color:var(--ink); font:400 1.05rem/1.6 "JetBrains Mono", ui-monospace, monospace; }
+  main { width:min(100%, 34rem); }
+  .ticket { background:#fffaf0; border:1.5px solid var(--ink); padding:1.2rem 1.4rem 1.4rem; box-shadow:6px 6px 0 var(--ink); transform:rotate(-1.5deg); }
+  .ticket header { display:flex; justify-content:space-between; padding-bottom:.6rem; margin-bottom:.8rem; border-bottom:1px dashed var(--ink); font-size:.8rem; }
+  .tag { background:var(--bug); color:#fff; padding:0 .5rem; text-transform:uppercase; letter-spacing:.05em; }
+  dl { margin:0; } dl div { display:grid; grid-template-columns:6rem 1fr; font-size:.9rem; }
+  dt { color:var(--soft); } dd { margin:0; } .bad { color:var(--bug); }
+  h1 { font:400 clamp(2.2rem,8vw,3.4rem)/1.05 "Fraunces", Georgia, serif; letter-spacing:-.02em; margin:2.2rem 0 1rem; }
+  h1 em { color:var(--bug); }
+  a { display:inline-block; margin-top:.5rem; color:var(--ink); font-size:.9rem; text-underline-offset:.2em; text-decoration-color:var(--bug); text-decoration-thickness:2px; }
+</style>
+</head>
+<body>
+<main>
+  <div class="ticket" role="img" aria-label="Defect report: expected a page, actual nothing">
+    <header><b>QA-404</b><span class="tag">Reproducible</span></header>
+    <dl>
+      <div><dt>Steps</dt><dd>Follow this link.</dd></div>
+      <div><dt>Expected</dt><dd>A page.</dd></div>
+      <div><dt>Actual</dt><dd class="bad">Nothing.</dd></div>
+      <div><dt>Severity</dt><dd>Awkward</dd></div>
+    </dl>
+  </div>
+  <h1>That page <em>doesn't exist.</em></h1>
+  <a href="/">Back to the portfolio</a>
+</main>
+</body>
+</html>
