@@ -1,0 +1,195 @@
+import type { Credential, Metric, Profile, Role, SkillGroup } from "../domain/entities";
+
+export const profile: Profile = {
+  name: "Alexandra Michael",
+  title: "Software QA Engineer",
+  location: "Lagos, Nigeria",
+  email: "alexandragift02@gmail.com",
+  phone: "+234 808 719 9431",
+  linkedin: "https://linkedin.com/in/alexandra--michael--",
+  bio: [
+    "I test software for a living, which mostly means I read the requirements more carefully than anyone else in the room and then try to use the product like someone who never read them.",
+    "Fintech wallets, credit scoring, ride booking, ERP tickets, a no-code workflow builder. Different products, same habit: write the case down, break it on purpose, and don't sign off until the fix has been retested.",
+    "Lately I lead QA on three products at once, and I write the automation that keeps them honest.",
+  ],
+};
+
+export const metrics: Metric[] = [
+  { value: 5000, suffix: "+", label: "test cases written across ten teams" },
+  { value: 600, suffix: "+", label: "defects reported with steps to reproduce" },
+  { value: 13, suffix: "", label: "partner modules on one B2B platform" },
+  { value: 3, suffix: "", label: "products I currently lead QA on" },
+];
+
+export const roles: Role[] = [
+  {
+    id: "QA-010",
+    company: "Cosella",
+    umbrella: "Thelix Holdings",
+    title: "QA Engineer, Team Lead",
+    period: "Jul 2026 – now",
+    location: "Dallas, US",
+    current: true,
+    focus: ["automation"],
+    summary: "Early-stage QA across a five-app platform: marketing, team, individual, desktop coaching and admin.",
+    highlights: [
+      "Read the master PRD against stakeholder requirements before the build, so the intended behaviour was settled first.",
+      "Produced an automation suite: a 66-feature inventory and 90+ test cases mapped to what can be automated.",
+      "Exploratory testing on core flows, with structured defect reports.",
+      "Checked prototype behaviour (persistence, routing, plan separation, validation) and kept known defects as regression cases.",
+    ],
+  },
+  {
+    id: "QA-009",
+    company: "Credit Veto",
+    umbrella: "Thelix Holdings",
+    title: "QA Engineer, Team Lead",
+    period: "Mar 2026 – now",
+    location: "Dallas, US",
+    current: true,
+    focus: ["fintech", "mobile"],
+    summary: "End-to-end QA on a Flutter mobile app and a B2B partner platform covering Scorely, Marketplace, Invoicing and Payroll.",
+    highlights: [
+      "90+ defect reports across auth, payments, KYC/BVN, credit scoring, rewards and virtual accounts.",
+      "500+ test cases over 13 partner modules, with positive, negative and edge scenarios.",
+      "Regression, smoke and retest cycles, including re-logging anything that came back, before release sign-off.",
+      "Ran the defect lifecycle in Command Hub and wrote feature-verification tickets with acceptance criteria.",
+    ],
+  },
+  {
+    id: "QA-008",
+    company: "Lightforth",
+    umbrella: "Thelix Holdings",
+    title: "QA Engineer, Team Lead",
+    period: "Feb 2026 – now",
+    location: "Dallas, US",
+    current: true,
+    focus: ["ai", "automation"],
+    summary: "QA across the AI modules: Auto Apply, Interview Prep, Resume Builder, KYC and Copilot.",
+    highlights: [
+      "50+ bug reports with clear reproduction steps and expected-versus-actual results.",
+      "Built and maintain a Cypress end-to-end framework in TypeScript, using Page Object Model and wired into CI/CD.",
+      "Sanity, regression and exploratory passes to keep each build release-ready.",
+      "Wrote a 100+ case suite from the PRD and turned loose bug descriptions into structured reports and feature requests.",
+    ],
+  },
+  {
+    id: "QA-007",
+    company: "Descasio",
+    title: "Software QA Tester",
+    period: "Sep 2025 – Aug 2026",
+    location: "Lagos, Nigeria",
+    current: false,
+    focus: ["ai", "erp"],
+    summary: "Tested Plug IQ, a no-code automation tool, and Luna AI inside it: workflows, apps and business processes like leave requests and expense claims.",
+    highlights: [
+      "Workflow Designer, UI Editor and Workflow Builder: screen rendering, node linking, user roles, task transitions, action triggers.",
+      "Integrations checked for data accuracy: Google Workspace, Microsoft 365, REST APIs, DocuSign, SendGrid, Paystack.",
+      "500+ bugs found in Linear and 1,000+ test cases written; worked with developers and PMs on priority and deployment checks.",
+      "Prepared QA reports, supported UAT and client-specific rollouts.",
+    ],
+  },
+  {
+    id: "QA-006",
+    company: "Medicare Supply Chain",
+    title: "Software QA Tester",
+    period: "Jan 2025 – Mar 2026",
+    location: "Lagos, Nigeria",
+    current: false,
+    focus: ["mobile"],
+    summary: "End-to-end testing across modules and languages, on web and mobile.",
+    highlights: [
+      "Owned the full authentication flow for both business and personal registration.",
+      "Built and maintained 2,000+ test cases.",
+      "Weekly QA reports written for technical and non-technical readers alike.",
+      "Supported UAT, logged new issues in Zentao and ran continuous regression to protect production.",
+    ],
+  },
+  {
+    id: "QA-005",
+    company: "Agendifynow",
+    title: "Software QA Tester",
+    period: "Apr 2023 – Oct 2024",
+    current: false,
+    focus: ["mobile", "automation"],
+    summary: "Android testing for agenda, task management, reminders and calendar sync.",
+    highlights: [
+      "50+ bugs tracked in Jira from open to close.",
+      "API and third-party integration checks with Postman and Playwright.",
+      "Worked inside Agile sprints with developers and designers, keeping test plans and cases current.",
+    ],
+  },
+  {
+    id: "QA-004",
+    company: "Syncpro",
+    title: "Software QA Tester",
+    period: "Sep 2021 – Dec 2022",
+    current: false,
+    focus: ["erp"],
+    summary: "Manual testing of a web ERP and workflow system: ticketing, task assignment and the agent console.",
+    highlights: [
+      "Verified SLA/OLA configuration and walked tickets from creation to resolution.",
+      "Regression after every fix and feature update, defects tracked in ClickUp.",
+      "Pre- and post-release checks in staging and production.",
+    ],
+  },
+  {
+    id: "QA-003",
+    company: "Finarium",
+    title: "Software QA Tester",
+    period: "Dec 2020 – Sep 2021",
+    current: false,
+    focus: ["fintech"],
+    summary: "Banking-as-a-Service with multicurrency wallets and cross-border transfers in USD, GBP and EUR.",
+    highlights: [
+      "1,000+ test cases across onboarding, KYC, currency conversion, internal and external transfers.",
+      "API testing for merchant services: transfers, balances, history, account data.",
+      "Super Admin dashboard: user management, transaction monitoring, KYC, subscriptions, reconciliation.",
+      "Supported security, compliance and data-integrity testing to financial-industry standards.",
+    ],
+  },
+  {
+    id: "QA-002",
+    company: "Loopfreight",
+    title: "Software QA Tester",
+    period: "Jan 2020 – Dec 2020",
+    current: false,
+    focus: ["mobile", "fintech"],
+    summary: "Delivery and ride-booking, from rider registration to payment, plus the driver app and admin dashboard.",
+    highlights: [
+      "700+ test cases; driver-side live tracking, acceptance, waybill confirmation, earnings and rewards.",
+      "Commission splits, reconciliation, earnings reports and dispute handling.",
+      "Maintained the Active Version Documentation for releases and environments, and gave formal QA sign-off.",
+    ],
+  },
+  {
+    id: "QA-001",
+    company: "Natural Studio",
+    title: "Software QA Tester",
+    period: "Jul 2019 – Dec 2019",
+    current: false,
+    focus: ["mobile"],
+    summary: "Photo and video recording app: capture, playback, editing, filters, export and share.",
+    highlights: [
+      "Camera behaviour (front/rear, zoom, focus) and media quality across devices and OS versions.",
+      "Stress testing for crashes, frame drops and memory; bugs in audio/video sync.",
+      "400+ test cases and usability feedback on editing tools.",
+    ],
+  },
+];
+
+export const skillGroups: SkillGroup[] = [
+  { name: "Automation & API", items: ["Cypress", "Playwright", "Katalon Studio", "Postman", "JMeter"] },
+  { name: "Trackers & docs", items: ["Jira", "Linear", "ClickUp", "Zentao", "Command Hub", "Trello", "Notion", "GitHub"] },
+  {
+    name: "Kinds of testing",
+    items: ["Functional", "Regression", "Exploratory", "End-to-end", "Integration", "API", "Mobile", "Cross-browser", "Usability", "Database", "Performance", "Smoke"],
+  },
+  { name: "Around the edges", items: ["TypeScript", "HTML & CSS", "JavaScript", "Figma", "Miro", "Slack", "Teams"] },
+];
+
+export const credentials: Credential[] = [
+  { title: "BSc Microbiology", issuer: "Cross River University of Technology, Calabar", note: "2022" },
+  { title: "ISTQB Foundation Level", issuer: "Certification", note: "in view" },
+  { title: "Complete Full-Stack Web Development Bootcamp", issuer: "Udemy", note: "completed" },
+];
