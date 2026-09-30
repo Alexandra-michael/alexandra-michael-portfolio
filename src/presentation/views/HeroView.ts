@@ -35,7 +35,7 @@ export class HeroView implements View {
             "div",
             { class: "actions" },
             h("a", { class: "btn btn--solid", href: "#work" }, "Read the case files"),
-            h("a", { class: "btn btn--line", href: this.vm.mailto }, `Write to ${this.vm.firstName}`),
+            h("a", { class: "btn btn--line", href: "/Alexandra-Michael-CV.pdf", target: "_blank", rel: "noopener" }, "View CV ↗"),
           ),
         ),
         h(

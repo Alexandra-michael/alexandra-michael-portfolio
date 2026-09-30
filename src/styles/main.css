@@ -198,3 +198,7 @@ h2 em, h1 em { font-style: italic; color: var(--bug); }
   .ticket { width: 13.5rem; font-size: .72rem; right: -4%; }
   .case__who strong { font-size: 1.3rem; }
 }
+
+.site-header nav a.nav-cv { border: 1.5px solid var(--ink); border-radius: 999px; padding: .3rem .85rem; background: none; }
+.site-header nav a.nav-cv:hover { background: var(--ink); color: var(--paper); }
+@media (max-width: 560px) { .site-header nav a:nth-child(2) { display: none; } }

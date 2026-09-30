@@ -18,6 +18,7 @@ export class HeaderView implements View {
         "nav",
         { "aria-label": "Primary" },
         ...links.map(([label, href]) => h("a", { href }, label)),
+        h("a", { class: "nav-cv", href: "/Alexandra-Michael-CV.pdf", target: "_blank", rel: "noopener" }, "View CV ↗"),
       ),
     );
     parent.append(header);
