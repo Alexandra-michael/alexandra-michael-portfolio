@@ -2,6 +2,8 @@
 
 Personal portfolio for Alexandra Michael, Software QA Engineer. Static site built with Vite and TypeScript, deployed on Cloudflare Pages.
 
+Live: https://alexandra-michael.pages.dev
+
 ## Stack
 
 - TypeScript, Vite, no UI framework
@@ -38,11 +40,34 @@ src/
 
 To change the copy on the site, edit `src/data/content.ts`.
 
-## Branching and deployment
+## Content and assets
+
+- Copy, roles, metrics and skills: `src/data/content.ts`
+- Photos and the CV PDF: `public/` (the CV is served at `/Alexandra-Michael-CV.pdf`; replace the file to update it)
+- Site URL used for link previews (`og:image`, canonical): `VITE_SITE_URL` in `.env`. Update it if the domain changes.
+- Static pages and files: `public/404.html`, `public/robots.txt`, `public/_headers`
+
+## Branching and workflow
 
 - `dev`: day-to-day work. CI runs typecheck, tests and build on every push and PR.
-- `main`: production. Merging a PR into `main` runs the checks and deploys to Cloudflare Pages.
+- `main`: production. Changes arrive only through a PR from `dev`.
 
-Commits follow [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `docs:`, `ci:`, `chore:`).
+Flow: commit on `dev` → push → open a PR `dev` into `main` → CI passes → merge.
 
-Full setup steps are in [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
+Commits follow [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `docs:`, `ci:`, `chore:`, `style:`).
+
+## CI and deployment
+
+| Workflow | Trigger | What it does |
+| -------- | ------- | ------------ |
+| `ci.yml` | PRs into `main` or `dev`, pushes to `dev` | typecheck, test, build |
+| `deploy.yml` | PR into `main` is merged | typecheck, test, build, then deploy `dist/` to Cloudflare Pages (creates the project on first run) |
+
+Closing a PR without merging does not deploy.
+
+Required in the GitHub repo (Settings → Secrets and variables → Actions):
+
+- Secrets: `CLOUDFLARE_API_TOKEN` (permission: Account → Cloudflare Pages → Edit), `CLOUDFLARE_ACCOUNT_ID`
+- Variable: `CF_PAGES_PROJECT` = `alexandra-michael`
+
+Step-by-step setup and troubleshooting: [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
