@@ -39,4 +39,6 @@ const views: View[] = [
 
 const root = document.getElementById("app");
 if (!root) throw new Error("#app not found");
+// Drop the prerendered SEO copy (see vite.config.ts) before the app renders.
+root.replaceChildren();
 views.forEach((v) => v.mount(root));
